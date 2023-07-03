@@ -1,0 +1,19 @@
+package inventory;
+
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.minecraft.util.Identifier;
+
+public class TuMod implements ModInitializer {
+    // Identificador para el contenedor
+    public static final Identifier ORDENAR_ITEMS_CONTAINER = new Identifier("test_mod", "ordenar_items_container");
+
+   
+    @Override
+    public void onInitialize() {
+        // Registra el contenedor del inventario
+        ScreenRegistry.register(ORDENAR_ITEMS_CONTAINER, OrdenarItemsScreen::new);
+
+        // Otros registros y lógica de inicialización del mod
+    }
+}
