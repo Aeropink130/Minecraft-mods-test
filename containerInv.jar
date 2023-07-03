@@ -1,0 +1,36 @@
+package inventory;
+
+import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.Slot;
+
+public class OrdenarItemsContainer extends ScreenHandler {
+    private final Inventory inventory;
+
+    public OrdenarItemsContainer(int syncId, PlayerInventory playerInventory) {
+        this(syncId, playerInventory, new Inventory(27));
+    }
+
+    public OrdenarItemsContainer(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+        super(null, syncId);
+        this.inventory = inventory;
+
+        // Añade el botón en la posición deseada en el inventario
+        // última fila y la última columna del inventario (fila 3, columna 9)
+        int startX = 8;
+        int startY = 84;
+        this.addSlot(new Slot(inventory, 0, startX + 8 * 9, startY + 3 * 18));
+
+        // Crea e instancia el botón de ordenar
+        OrdenarItemsButton ordenarButton = new OrdenarItemsButton(startX + 8 * 9, startY + 3 * 18 + 22);
+        this.addButton(ordenarButton);
+    }
+
+    @Override
+    public boolean canUse(PlayerEntity player) {
+        return true;
+    }
+}
